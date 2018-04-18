@@ -178,92 +178,20 @@
 <li><strong>Swagger</strong> 的出现，让开发人员不在关注接口文档的编写。</li>
 </ul>
 <p>开始<strong>Springboot</strong>集成<strong>Swagger</strong>步骤</p>
-<h4 id="添加Swagger依赖"><a href="#添加Swagger依赖" class="headerlink" title="添加Swagger依赖"></a>添加<strong>Swagger</strong>依赖</h4><p></p><p class="code-caption" data-lang="htmlbars" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
-<pre><code class="htmlbars">&lt;dependency&gt;
-    &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-    &lt;artifactId&gt;springfox-swagger2&lt;/artifactId&gt;
-    &lt;version&gt;2.7.0&lt;/version&gt;
-&lt;/dependency&gt;
-
-&lt;dependency&gt;
-    &lt;groupId&gt;io.springfox&lt;/groupId&gt;
-    &lt;artifactId&gt;springfox-swagger-ui&lt;/artifactId&gt;
-    &lt;version&gt;2.7.0&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-<h4 id="编写Swagger的配置类"><a href="#编写Swagger的配置类" class="headerlink" title="编写Swagger的配置类"></a>编写Swagger的配置类</h4><p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
-<pre><code>@Configuration
-@EnableSwagger2
-public class Swagger2 {
-
-    @Bean
-    public Docket createSwaggerApiDoc() {
-        return new Docket(DocumentationType.Swagger_2)
-                .apiInfo(apiInfo())
-                .forCodeGeneration(true)
-                .directModelSubstitute(java.nio.ByteBuffer.class, String.class)
-                .genericModelSubstitutes(ResponseEntity.class)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage(&quot;com.test.web.controller&quot;)) // 指定扫描需要被Swagger加载的controller
-                .paths(PathSelectors.any())
-                .build();
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title(&quot;我是Swagger的描述偷&quot;)
-                .description(&quot;更多详情的Swagger 请关注Swagger的官网：https://Swagger.io/&quot;)
-                .termsOfServiceUrl(&quot;个人网站&quot;)
-                .contact(&quot;文档创建人&quot;) // 2.7版本，参数不在是字符串，而是new Contact(&quot;名称&quot;,&quot;描述&quot;,&quot;邮箱&quot;)
-                .version(&quot;1.0&quot;)
-                .build();
-    }
-
-}
-</code></pre><p>如上代码所示，通过 <strong>@Configuration</strong> 注解，让Spring来加载该类配置。再通过 <strong>@EnableSwagger2</strong> 注解来启用Swagger2。</p>
+<h4 id="添加Swagger依赖"><a href="#添加Swagger依赖" class="headerlink" title="添加Swagger依赖"></a>添加<strong>Swagger</strong>依赖</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.springfox<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springfox-swagger-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="编写Swagger的配置类"><a href="#编写Swagger的配置类" class="headerlink" title="编写Swagger的配置类"></a>编写Swagger的配置类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger</span>2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swagger2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Docket <span class="title">createSwaggerApiDoc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Docket(DocumentationType.Swagger_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .forCodeGeneration(<span class="keyword">true</span>)</span><br><span class="line">                .directModelSubstitute(java.nio.ByteBuffer.class, String.class)</span><br><span class="line">                .genericModelSubstitutes(ResponseEntity.class)</span><br><span class="line">                .select()</span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">"com.test.web.controller"</span>)) <span class="comment">// 指定扫描需要被Swagger加载的controller</span></span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ApiInfo <span class="title">apiInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ApiInfoBuilder()</span><br><span class="line">                .title(<span class="string">"我是Swagger的描述偷"</span>)</span><br><span class="line">                .description(<span class="string">"更多详情的Swagger 请关注Swagger的官网：https://Swagger.io/"</span>)</span><br><span class="line">                .termsOfServiceUrl(<span class="string">"个人网站"</span>)</span><br><span class="line">                .contact(<span class="string">"文档创建人"</span>) <span class="comment">// 2.7版本，参数不在是字符串，而是new Contact("名称","描述","邮箱")</span></span><br><span class="line">                .version(<span class="string">"1.0"</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上代码所示，通过 <strong>@Configuration</strong> 注解，让Spring来加载该类配置。再通过 <strong>@EnableSwagger2</strong> 注解来启用Swagger2。</p>
 <p>通过<strong>createSwaggerApiDoc</strong> 创建<strong>Docket</strong>对象，并在此函数上面添加注解 <strong>@Bean</strong>  让Spring 进行加载<br><strong>apiInfo</strong> 方法是描述Swagger文档的一些信息。如果不写。会有默认</p>
 <p>通过createSwaggerApiDoc 通过select() 函数返回ApiSelectorBuilder 进行指定那些接口在Swagger提醒<br><strong>apis(RequestHandlerSelectors.basePackage(“com.test.web.controller”))</strong> 指定扫描的包</p>
 <p>直接被Swagger扫描的方式还可以使用此函数，也是跟在select() 函数后面<br><strong>.paths(or(regex(“/api/.*”)))</strong>  // 指定需要暴露给Swagger的接口  <strong>==URL==</strong></p>
-<h4 id="Controller的编写"><a href="#Controller的编写" class="headerlink" title="Controller的编写"></a>Controller的编写</h4><p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
-<pre><code>@RequestMapping(&quot;/api/quote&quot;)
-@RestController
-public class TestController {
-
-    @ApiOperation(value = &quot;测试Swagger接口&quot;, notes = &quot;测试Swagger接口&quot;)
-    public String getTest(String data) {
-        return &quot;Api&quot;;
-    }
-}
-</code></pre><p><strong> @ApiOperation(value = “测试Swagger接口”, notes = “测试Swagger接口”)</strong><br> 该注解是描述这个接口的说明</p>
+<h4 id="Controller的编写"><a href="#Controller的编写" class="headerlink" title="Controller的编写"></a>Controller的编写</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/api/quote"</span>)</span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiOperation</span>(value = <span class="string">"测试Swagger接口"</span>, notes = <span class="string">"测试Swagger接口"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getTest</span><span class="params">(String data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Api"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong> @ApiOperation(value = “测试Swagger接口”, notes = “测试Swagger接口”)</strong><br> 该注解是描述这个接口的说明</p>
 <h2 id="最后启动SpringBoot-项目"><a href="#最后启动SpringBoot-项目" class="headerlink" title="最后启动SpringBoot 项目"></a>最后启动SpringBoot 项目</h2><p>访问：http:localhost:8080/Swagger-ui.html</p>
 <p>如果这时候报错，就需要继承WebMvcConfigurationSupport<br>指定Swagger静态资源的访问</p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
-<pre><code>@Configuration
-public class ServletConfig extends WebMvcConfigurationSupport {
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurationSupport</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addResourceHandler(<span class="string">"Swagger-ui.html"</span>).addResourceLocations(<span class="string">"classpath:/META-INF/resources/"</span>);</span><br><span class="line">        registry.addResourceHandler(<span class="string">"/webjars/**"</span>).addResourceLocations(<span class="string">"classpath:/META-INF/resources/webjars/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="如果访问接口出现跨域问题"><a href="#如果访问接口出现跨域问题" class="headerlink" title="如果访问接口出现跨域问题"></a>如果访问接口出现跨域问题</h2><p>添加此函数到ServletConfig<br>此函数基于Filter的CORS配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> CorsFilter <span class="title">corsFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    UrlBasedCorsConfigurationSource source = <span class="keyword">new</span> UrlBasedCorsConfigurationSource();</span><br><span class="line">    CorsConfiguration config = <span class="keyword">new</span> CorsConfiguration();</span><br><span class="line">    <span class="comment">// 设置你要允许的网站域名，如果全允许则设为 *</span></span><br><span class="line">    config.setAllowedOrigins(Arrays.asList(<span class="string">"*"</span>));</span><br><span class="line">     <span class="comment">// 如果要限制 Header 或 Method 请自行更改</span></span><br><span class="line">    config.setAllowedMethods(Arrays.asList(<span class="string">"GET"</span>,<span class="string">"PUT"</span>,<span class="string">"POST"</span>,<span class="string">"DELETE"</span>,<span class="string">"OPTIONS"</span>));</span><br><span class="line">    config.setAllowedHeaders(Arrays.asList(<span class="string">"*"</span>));</span><br><span class="line">    source.registerCorsConfiguration(<span class="string">"/api/**"</span>, config);</span><br><span class="line">    <span class="comment">// 处理Swagger请求</span></span><br><span class="line">    source.registerCorsConfiguration(<span class="string">"/v2/api-docs"</span>, config);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> CorsFilter(source);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(&quot;Swagger-ui.html&quot;).addResourceLocations(&quot;classpath:/META-INF/resources/&quot;);
-        registry.addResourceHandler(&quot;/webjars/**&quot;).addResourceLocations(&quot;classpath:/META-INF/resources/webjars/&quot;);
-    }
-}
-</code></pre><h2 id="如果访问接口出现跨域问题"><a href="#如果访问接口出现跨域问题" class="headerlink" title="如果访问接口出现跨域问题"></a>如果访问接口出现跨域问题</h2><p>添加此函数到ServletConfig<br>此函数基于Filter的CORS配置</p>
-<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
-<pre><code>@Bean
-public CorsFilter corsFilter() {
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    CorsConfiguration config = new CorsConfiguration();
-    // 设置你要允许的网站域名，如果全允许则设为 *
-    config.setAllowedOrigins(Arrays.asList(&quot;*&quot;));
-     // 如果要限制 Header 或 Method 请自行更改
-    config.setAllowedMethods(Arrays.asList(&quot;GET&quot;,&quot;PUT&quot;,&quot;POST&quot;,&quot;DELETE&quot;,&quot;OPTIONS&quot;));
-    config.setAllowedHeaders(Arrays.asList(&quot;*&quot;));
-    source.registerCorsConfiguration(&quot;/api/**&quot;, config);
-    // 处理Swagger请求
-    source.registerCorsConfiguration(&quot;/v2/api-docs&quot;, config);
-    return new CorsFilter(source);
-}
-</code></pre>
     </div>
 
     <div class="post-footer">   
@@ -431,19 +359,6 @@ public CorsFilter corsFilter() {
 <a id="back-to-top" class="hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
-
-<!-- Highlight.js -->
-<link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad();
-</script>
-
-
-
-
-
     <div class="copyright">
     <div class="container">
         <div class="row">
