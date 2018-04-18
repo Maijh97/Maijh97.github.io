@@ -69,6 +69,8 @@
 
 
     
+    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
 </head>
 
 
@@ -177,11 +179,30 @@
 <ul>
 <li>sshpass下载 <a href="http://sourceforge.net/projects/sshpass/" target="_blank" rel="noopener">http://sourceforge.net/projects/sshpass/</a></li>
 </ul>
-<p>安装方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget http://sourceforge.net/projects/sshpass/files/sshpass/1.05/sshpass-1.05.tar.gz  </span><br><span class="line">tar xvzf sshpass-1.05.tar.gz  </span><br><span class="line">./configure --prefix=/usr/local/Cellar/sshpass/1.05  </span><br><span class="line">#./configure  主要的作用是对即将安装的软件进行配置，检查当前的环境是否满足要安装软件的依赖关系，</span><br><span class="line">但并不是所有的tar包都是源代码的包，楼主可以ls看看有没有configure这个文件，也许你下的是二进制的包，如果是二进制的包，解压后直接就能使用。</span><br><span class="line"></span><br><span class="line">make  </span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p>
-<p>下载完之后</p>
+<p>安装方法：</p>
+<pre><code>wget http://sourceforge.net/projects/sshpass/files/sshpass/1.05/sshpass-1.05.tar.gz  
+tar xvzf sshpass-1.05.tar.gz  
+./configure --prefix=/usr/local/Cellar/sshpass/1.05  
+#./configure  主要的作用是对即将安装的软件进行配置，检查当前的环境是否满足要安装软件的依赖关系，
+但并不是所有的tar包都是源代码的包，楼主可以ls看看有没有configure这个文件，也许你下的是二进制的包，如果是二进制的包，解压后直接就能使用。
+
+make  
+sudo make install  
+</code></pre><p>下载完之后</p>
 <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p><img src="/postImg/1523954780516.jpg" alt="mahua"></p>
-<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p><img src="/postImg/1523860723564.jpg" alt="mahua"><br>command脚本<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin/sshpass -f  /usr/local/Cellar/sshpass/password/test ssh -p22 root@192.168.0.0</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>/usr/local/bin/sshpass sshpass安装目录 指定执行命令，也可以配置成为环境变量</span><br><span class="line"><span class="meta">#</span> -f 是指定密码的路径</span><br><span class="line"><span class="meta">#</span>/usr/local/Cellar/sshpass/password/test 密码路径</span><br><span class="line"><span class="meta">#</span>ssh -p22 root@192.168.0.0 ssh登录密码</span><br></pre></td></tr></table></figure></p>
-<h2 id="编写密码文件"><a href="#编写密码文件" class="headerlink" title="编写密码文件"></a>编写密码文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi test</span><br><span class="line"><span class="meta">#</span>内容为123456</span><br><span class="line"><span class="meta">#</span>按esc键切换命令模式</span><br><span class="line">输入命令 :qw 保存</span><br></pre></td></tr></table></figure>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p><img src="/postImg/1523860723564.jpg" alt="mahua"><br>command脚本</p>
+<pre><code class="shell">/usr/local/bin/sshpass -f  /usr/local/Cellar/sshpass/password/test ssh -p22 root@192.168.0.0
+
+#/usr/local/bin/sshpass sshpass安装目录 指定执行命令，也可以配置成为环境变量
+# -f 是指定密码的路径
+#/usr/local/Cellar/sshpass/password/test 密码路径
+#ssh -p22 root@192.168.0.0 ssh登录密码
+</code></pre>
+<h2 id="编写密码文件"><a href="#编写密码文件" class="headerlink" title="编写密码文件"></a>编写密码文件</h2><pre><code class="shell">vi test
+#内容为123456
+#按esc键切换命令模式
+输入命令 :qw 保存
+</code></pre>
 
     </div>
 
@@ -198,6 +219,8 @@
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/18/swagger/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
     
         <a href="/2018/04/01/httpSetProxy/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
@@ -299,7 +322,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MacBook-pro-效率工具/"><i class="fa" aria-hidden="true">MacBook pro 效率工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MacBook-pro-效率工具/"><i class="fa" aria-hidden="true">MacBook pro 效率工具</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/后端/"><i class="fa" aria-hidden="true">后端</i></a><span class="category-list-count">2</span></li></ul>
     </div>
 
 
@@ -307,7 +330,7 @@
         
     <div class="widget">
       <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">2</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">3</span></li></ul>
     </div>
 
 
@@ -316,7 +339,7 @@
   <div class="widget">
     <h3 class="title">标签云</h3>
     <div class="content tag-cloud">
-        <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a>
+        <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Spring-boot/" style="font-size: 10px;">Spring boot</a> <a href="/tags/mac/" style="font-size: 10px;">mac</a>
     </div>
   </div>
 
