@@ -69,8 +69,7 @@
 
 
     
-    <link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
-    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+
 </head>
 
 
@@ -180,6 +179,7 @@
 <li>sshpass下载 <a href="http://sourceforge.net/projects/sshpass/" target="_blank" rel="noopener">http://sourceforge.net/projects/sshpass/</a></li>
 </ul>
 <p>安装方法：</p>
+<p></p><p class="code-caption" data-lang="" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
 <pre><code>wget http://sourceforge.net/projects/sshpass/files/sshpass/1.05/sshpass-1.05.tar.gz  
 tar xvzf sshpass-1.05.tar.gz  
 ./configure --prefix=/usr/local/Cellar/sshpass/1.05  
@@ -187,10 +187,11 @@ tar xvzf sshpass-1.05.tar.gz
 但并不是所有的tar包都是源代码的包，楼主可以ls看看有没有configure这个文件，也许你下的是二进制的包，如果是二进制的包，解压后直接就能使用。
 
 make  
-sudo make install  
+sudo make install
 </code></pre><p>下载完之后</p>
 <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p><img src="/postImg/1523954780516.jpg" alt="mahua"></p>
 <h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p><img src="/postImg/1523860723564.jpg" alt="mahua"><br>command脚本</p>
+<p></p><p class="code-caption" data-lang="shell" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
 <pre><code class="shell">/usr/local/bin/sshpass -f  /usr/local/Cellar/sshpass/password/test ssh -p22 root@192.168.0.0
 
 #/usr/local/bin/sshpass sshpass安装目录 指定执行命令，也可以配置成为环境变量
@@ -198,7 +199,8 @@ sudo make install
 #/usr/local/Cellar/sshpass/password/test 密码路径
 #ssh -p22 root@192.168.0.0 ssh登录密码
 </code></pre>
-<h2 id="编写密码文件"><a href="#编写密码文件" class="headerlink" title="编写密码文件"></a>编写密码文件</h2><pre><code class="shell">vi test
+<h2 id="编写密码文件"><a href="#编写密码文件" class="headerlink" title="编写密码文件"></a>编写密码文件</h2><p></p><p class="code-caption" data-lang="shell" data-line_number="frontend" data-trim_indent="backend" data-label_position="outer" data-labels_left="Code" data-labels_right=":" data-labels_copy="Copy Code"><span class="code-caption-label"></span><a class="code-caption-copy">Copy Code</a></p><p></p>
+<pre><code class="shell">vi test
 #内容为123456
 #按esc键切换命令模式
 输入命令 :qw 保存
@@ -373,6 +375,14 @@ sudo make install
 <a id="back-to-top" class="hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+
+<!-- Highlight.js -->
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
 
 
 
