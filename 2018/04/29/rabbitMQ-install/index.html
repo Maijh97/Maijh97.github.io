@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>snow</title>
+<title>安装 RabbitMQ | snow</title>
 
 
     <link rel="alternate" href="/atom.xml" title="snow" type="application/atom+xml">
@@ -130,44 +130,16 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <div class="carousel">
-    <img src="/img/headimg.jpeg">
-</div>
-
-
-
-
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
 <article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2018/04/29/rabbitMQ-install/">安装 RabbitMQ</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2018年04月29日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
+    <div class="post-head">
+        <h1 id="安装 RabbitMQ">
             
-                CentOS 安装 RabbitMQ
-使用yum命令安装需要安装第三方的源
-
-12yum install epel-release# 安装第三方源
-
-开始安装RabbitMQ
-第一步需要安装erlang
-
-erlang 是安装Rabb...
+	            安装 RabbitMQ
             
-        </p> 
-    </div>
-    <footer class="post-footer clearfix">
-        <div class="pull-left tag-list">
-            <div class="post-meta">
+        </h1>
+        <div class="post-meta">
     
     
     <span class="categories-meta fa-wrap">
@@ -196,265 +168,75 @@ erlang 是安装Rabb...
     </span>
 </div>
 
-        </div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="CentOS-安装-RabbitMQ"><a href="#CentOS-安装-RabbitMQ" class="headerlink" title="CentOS 安装 RabbitMQ"></a>CentOS 安装 RabbitMQ</h1><ul>
+<li>使用yum命令安装需要安装第三方的源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br><span class="line"><span class="meta">#</span> 安装第三方源</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开始安装RabbitMQ</li>
+<li>第一步需要安装<strong>erlang</strong></li>
+</ul>
+<p><strong>erlang</strong> 是安装RabbitMQ的必须品</p>
+<p><strong>RabbitMQ</strong>是用<strong>Erlang</strong>实现的一个高并发高可靠AMQP消息队列服务器</p>
+<p><strong>Erlang</strong> 的介绍</p>
+<p>Erlang是一门动态类型的函数式编程语言，它也是一门解释型语言，由Erlang虚拟机解释执行。从语言模型上说，Erlang是基于Actor模型的实现。在Actor模型里面，万物皆Actor，每个Actor都封装着内部状态，Actor相互之间只能通过消息传递这一种方式来进行通信。对应到Erlang里，每个Actor对应着一个Erlang进程，进程之间通过消息传递进行通信。相比共享内存，进程间通过消息传递来通信带来的直接好处就是消除了直接的锁开销(不考虑Erlang虚拟机底层实现中的锁应用)，那么消息传递有没有开销？有，但是基本可以忽略，消息传递在单机上的本质就是内存复制，要知道DDR3 SDRAM的内存带宽约为16GB/s。</p>
+<p>详细介绍:<a href="http://ju.outofmemory.cn/entry/111451" target="_blank" rel="noopener">参考原文</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 通过yum install Erlang</span><br><span class="line">yum install erlang</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 输入erlang -v 查看是否安装成功</span><br><span class="line">erlang -v</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后安装RabbitMQ</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 下载RabbitMQ rpm的源</span><br><span class="line">wget http://www.rabbitmq.com/releases/rabbitmq-server/v3.6.6/rabbitmq-server-3.6.6-1.el6.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 使用yum安装</span><br><span class="line">yum -y install rabbitmq-server-3.6.6-1.el6.noarch.rp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>RabbitMQ 目录结构</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> RabbitMQ 命令目录</span><br><span class="line">/usr/lib/rabbitmq/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 命令介绍</span><br><span class="line"><span class="meta">#</span> 用于管理RabbitMQ代理的命令行</span><br><span class="line">rabbitmqctl</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> shell脚本，初始化关键的配置默认信息</span><br><span class="line">rabbitmq-defaults</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> shell脚本，设置运行环境各种默认配置</span><br><span class="line">rabbitmq-env</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 插件管理</span><br><span class="line">rabbitmq-plugins</span><br><span class="line">开启某个插件： rabbitmq-plugins enable &#123;插件名&#125;</span><br><span class="line">关闭某个插件： rabbitmq-plugins disable &#123;插件名&#125;</span><br><span class="line">查看插件列表： rabbitmq-plugins list</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 服务启动命令</span><br><span class="line">rabbitmq-server</span><br><span class="line">启动： service rabbitmq-server start</span><br><span class="line">停止:  service rabbitmq-server stop</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> RabbitMQ config文件路径</span><br><span class="line">/etc/rabbitmq/rabbitmq.config</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 数据源</span><br><span class="line">/var/lib/rabbitmq/mnesia/rabbit@VM_0_8_centos</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> log</span><br><span class="line">/var/log/rabbitmq/rabbit@VM_0_8_centos.log</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>安装完成后使用命令启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">启动rabbitmq服务:</span><br><span class="line"></span><br><span class="line">前台运行：rabbitmq-server start (用户关闭连接后,自动结束进程)</span><br><span class="line"></span><br><span class="line">后台运行：rabbitmq-server -detached</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>RabbitMQ 提供可视化界面</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 通过rabbitmq-plugins安装插件</span><br><span class="line">rabbitmq-plugins enable rabbitmq_management</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 默认RabbitMQ用户guest 只能本地访问</span><br><span class="line"><span class="meta">#</span> 添加用户,并且设置权限</span><br><span class="line">rabbitmqctl add_user test test</span><br><span class="line">rabbitmqctl set_user_tags test administrator</span><br><span class="line">rabbitmqctl set_permissions -p / test ".*" ".*" ".*"</span><br></pre></td></tr></table></figure>
+<h3 id="最后使用浏览器访问http-localhost-15672"><a href="#最后使用浏览器访问http-localhost-15672" class="headerlink" title="最后使用浏览器访问http://localhost:15672/"></a>最后使用浏览器访问<a href="http://localhost:15672/" target="_blank" rel="noopener">http://localhost:15672/</a></h3><h4 id="如果访问失败，请检查服务器的端口是否开放"><a href="#如果访问失败，请检查服务器的端口是否开放" class="headerlink" title="如果访问失败，请检查服务器的端口是否开放"></a>如果访问失败，请检查服务器的端口是否开放</h4>
+    </div>
 
-        <div class="post-permalink"> 
-            <a href="/2018/04/29/rabbitMQ-install/" class="btn btn-default">阅读全文</a>
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请保留原文链接 © <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+            
         </div>
-    </footer>
+        <div>
+            
+        </div>  
+    </div>
 </article>
 
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2018/04/18/Zull/">Spring Cloud zuul 集成Swagger API</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2018年04月18日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                Spring Cloud zuul 集成Swagger API
-引入依赖 pom.xml
-
-1234567891011&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;io.springfox&amp;lt;/grou...
-            
-        </p> 
-    </div>
-    <footer class="post-footer clearfix">
-        <div class="pull-left tag-list">
-            <div class="post-meta">
+<div class="article-nav prev-next-wrap clearfix">
     
     
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/后端">
-            后端
-        </a>
-    </span>
+        <a href="/2018/04/18/Zull/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
     
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            <a href="/tags/Spring boot">
-               Spring boot
-            </a>
-            
-        </span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2018/04/18</span>
-    </span>
 </div>
 
-        </div>
 
-        <div class="post-permalink"> 
-            <a href="/2018/04/18/Zull/" class="btn btn-default">阅读全文</a>
-        </div>
-    </footer>
-</article>
+    <div id="comments">
+        
+	<!--PC和WAP自适应版-->
+<div id="SOHUCS"></div>
+<script type="text/javascript">
+	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
+</script>	
 
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2018/04/18/swagger/">SpringBoot 单体服务集成Swagger</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2018年04月18日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                SpringBoot 单体服务集成Swagger
-在Spring Boot 出现 使开发部署更加便捷，在开发接口的时候，发现提供给前端人员的接口文档需要同步和代码修改更新导致接口文件的编写是一件很繁琐的事情。
-Swagger 的出现，...
-            
-        </p> 
     </div>
-    <footer class="post-footer clearfix">
-        <div class="pull-left tag-list">
-            <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/后端">
-            后端
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            <a href="/tags/Spring boot">
-               Spring boot
-            </a>
-            
-        </span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2018/04/18</span>
-    </span>
-</div>
-
-        </div>
-
-        <div class="post-permalink"> 
-            <a href="/2018/04/18/swagger/" class="btn btn-default">阅读全文</a>
-        </div>
-    </footer>
-</article>
-
-
-<article class="post">
-    
-        <div class="post-media">
-            <a href="/2018/04/16/post/">
-                <img class="img-ajax" src="/img/loading.gif"  data-src="/postImg/1523954780516.jpg"   alt="mac使用iterm2 实现保存密码 连接ssh"> 
-            </a>
-        </div>
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2018/04/16/post/">mac使用iterm2 实现保存密码 连接ssh</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2018年04月16日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                Macbook Pro  实现 ssh登录 保存密码实例Mac 好用的shell 工具 https://www.iterm2.com/
-安装sshpass
-
-sshpass下载 http://sourceforge.net/proje...
-            
-        </p> 
-    </div>
-    <footer class="post-footer clearfix">
-        <div class="pull-left tag-list">
-            <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/MacBook pro 效率工具">
-            MacBook pro 效率工具
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            <a href="/tags/mac">
-               mac
-            </a>
-            
-        </span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2018/04/16</span>
-    </span>
-</div>
-
-        </div>
-
-        <div class="post-permalink"> 
-            <a href="/2018/04/16/post/" class="btn btn-default">阅读全文</a>
-        </div>
-    </footer>
-</article>
-
-
-<article class="post">
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2018/04/01/httpSetProxy/">HTTP请求设置代理</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime="" title="">
-                    2018年04月01日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                HTTP请求设置代理
-1. HttpURLConnection配置代理123456789101112131415161718URL httpUrl = new URL(&#34;www.baidu.com&#34;);  // 创建URL实例// 通...
-            
-        </p> 
-    </div>
-    <footer class="post-footer clearfix">
-        <div class="pull-left tag-list">
-            <div class="post-meta">
-    
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/后端">
-            后端
-        </a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            <a href="/tags/HTTP">
-               HTTP
-            </a>
-            
-        </span>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">2018/04/01</span>
-    </span>
-</div>
-
-        </div>
-
-        <div class="post-permalink"> 
-            <a href="/2018/04/01/httpSetProxy/" class="btn btn-default">阅读全文</a>
-        </div>
-    </footer>
-</article>
-
 
 
 
